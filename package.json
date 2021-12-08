@@ -29,7 +29,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "husky:setup": "npx husky-init && npm run husky:commitlint && npm run husky:prettier",
+    "husky:commitlint": "npx husky add .husky/commit-msg 'npx --no-install commitlint --edit'",
+    "husky:prettier": "npx husky add .husky/pre-commit 'npm run prettier'",
+    "prettier": "cd src && npx prettier --write . && git add .",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,5 +44,11 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "husky": "^7.0.0",
+    "prettier": "^2.5.1"
+  }
 }
